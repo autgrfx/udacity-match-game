@@ -1,0 +1,213 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+/*     -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+} */
+
+.deck .card.open {
+    background: #02b3e4;
+    cursor: default;
+  }
+
+.deck .card.show {
+    font-size: 33px;
+    animation: fade-burst 0.5s;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+    animation: flash-rot 0.5s;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+    border:1px solid black;
+    padding:10px;
+}
+.moves {
+  display: inline-block;
+}
+
+.score-panel .goldStars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .goldStars li {
+    list-style: none;
+    display: inline-block;
+    color:gold;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+}
+
+.glow {
+  -webkit-animation: glow 2s ease-in-out infinite alternate;
+  -moz-animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Modal */
+.hide {
+  visibility: hidden;
+	opacity: 0;
+}
+
+.show {
+	visibility: visible;
+	opacity: 100;
+}
+.grayOn {
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  position: absolute;
+  margin-top: 0;
+  margin-bottom: 0;
+  background: rgba(153, 153, 153, 0.5);
+}
+
+.modal-container {
+  z-index: 100;
+  width: 200px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+  border: 1px solid #000;
+  background-color: #fff;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 15px;
+  opacity: 0.9;
+}
+
+.button {
+  padding: 5px;
+  border: 1px solid black;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  margin: auto auto;
+}
+
+#starRating  li {
+  list-style: none;
+  color: gold;
+  display: inline-block;
+}
+
+/* keyframe assignments */
+@keyframes fade-burst {
+    0% {
+        background-color: #3c384d;
+    }
+    100% {
+        background-color: #02ccba;
+        transform: rotateX(360deg);
+        -webkit-transform: rotateX(360deg);
+    }
+}
+
+@keyframes flash-rot {
+    0% {
+        background-color: #00Bfff;
+    }
+    100% {
+        background-color: #7700ff ;
+        transform: rotateY(360deg);
+        transform: rotateX(360deg);
+        -webkit-transform: rotateY(360deg);
+        -webkit-transform: rotateX(360deg);
+    }
+}
+/* TODO: tighten the glow */
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 8px #fff, 0 0 12px #e7fb05, 0 0 16px #e7fb05, 0 0 20px #e7fb05, 0 0 24px #e7fb05, 0 0 28px #e7fb05, 0 0 32px #e7fb05;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fffdcd, 0 0 15px #fffdcd, 0 0 20px #fffdcd, 0 0 25px #fffdcd, 0 0 30px #fffdcd, 0 0 35px #fffdcd;
+  }
+}
