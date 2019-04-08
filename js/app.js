@@ -11,6 +11,7 @@ const cards = [
   'fa-bicycle', 'fa-bicycle',
   'fa-bomb', 'fa-bomb'
 ]
+
 const timeCounter = document.getElementById('time-counter');
 const stopTimer = document.getElementById('stop-time');//TODO remove after testing
 const stars = document.querySelectorAll(".fa-star");
@@ -79,21 +80,12 @@ function startGame() {
 
   //reset board
   timeCounter.innerHTML = "00:00";
-  moves = 0;
-  matches = 7;
-  startTime = 0;
-  //totalTime = 0;
   totalMoves.innerHTML = moves;
   deck.innerHTML = cardHTML.join('');
-  starList.innerHTML = goldStars;
-  bodyBack.classList.remove("grayOn");
-  modal.classList.remove("show");
-  modal.classList.add("hide");
   timerRunning = ''; //Do I need this?
-  incTime = '';
+  incTime = '0';
   seconds = '00';
   minutes = '00';
-  let openCards = [];
 }
 
 startGame();
@@ -102,7 +94,7 @@ startGame();
 const incCounter = function () {
 	moves++;
 	totalMoves.innerHTML = moves;
-  if (moves > 8 && moves < 12){
+  if (moves > 10 && moves < 16){
         for( i= 0; i < 3; i++){
             if(i > 1){
                 stars[i].style.visibility = "collapse";
@@ -111,7 +103,7 @@ const incCounter = function () {
             } //TODO: change className to 'emptyStar'
         }
     }
-    else if (moves > 13){
+    else if (moves > 17){
         for( i= 0; i < 3; i++){
             if(i > 0){
                 stars[i].style.visibility = "collapse";
@@ -165,14 +157,27 @@ function timer() {
 
 //End the game when restart is hit or all cards match, pop up modal and show moves, time and rating
 // Restart the Game (.restart)
-function endGame() {
-  myWindow.close();
+function closeModal() {
+  bodyBack.classList.remove("grayOn");
+  modal.classList.remove("show");
+  modal.classList.add("hide");
+  stopTime()
 }
 
+document.getElementById('endGame').addEventListener('click', closeModal);
+
 function playAgain() {
-  stopTime();
-  startGame();
+  // bodyBack.classList.remove("grayOn");
+  //modal.classList.remove("show");
+  //modal.classList.add("hide");
+  //moves = 0;
+  //matches = 0;
+  //startTime = 0;
+  //starList.innerHTML = goldStars;
+  //startGame(); */ //TODO: fix reloading so that cards can be clicked and flipped
+  location.reload(true);
 }
+
 document.querySelector('.restart').addEventListener('click', playAgain);
 
 function gameOver() {

@@ -136,6 +136,11 @@ h1 {
 	visibility: visible;
 	opacity: 100;
 }
+
+.button {
+  cursor: pointer;
+}
+
 .grayOn {
   width: 100%;
   height: 100%;
@@ -148,7 +153,7 @@ h1 {
 
 .modal-container {
   z-index: 100;
-  width: 200px;
+  max-width: 400px;
   position: fixed;
   top: 50%;
   left: 50%;
